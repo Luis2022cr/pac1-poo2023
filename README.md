@@ -1,1 +1,2 @@
-# pac1-poo2023
+# programacion orientada a objetos
+## 2pac 2023
