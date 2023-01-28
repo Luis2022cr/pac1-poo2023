@@ -1,2 +1,2 @@
-# programacion orientada a objetos
-## pac1 unidad1 2023
+# Programacion Orientada a Objetos
+## PAC1 de 2023 - UNAH/CUROC
