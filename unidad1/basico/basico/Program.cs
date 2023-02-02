@@ -1,4 +1,5 @@
-﻿using basico.tipo_datos;
+﻿using basico.estructuras_control;
+using basico.tipo_datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,11 @@ namespace basico
             //Tipos01 t04 = new Tipos01("Hola feliz cumpleaños");
             //Tipos01 t05 = new Tipos01("Hola");
 
-            Tipos02 tipos02 = new Tipos02();
+            //Tipos02 tipos02 = new Tipos02();
 
+            //CondicionIf condicionIf = new CondicionIf();
+
+            Promedio promedio = new Promedio();
             Console.ReadKey();
         }
     }
