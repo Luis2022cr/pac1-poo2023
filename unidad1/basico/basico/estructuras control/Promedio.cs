@@ -32,22 +32,22 @@ namespace basico.estructuras_control
 
             if (promedio < 70)
             {
-                Console.WriteLine("Su promedio es" + promedio + "Usted reprobo");
+                Console.WriteLine("Su promedio es" + promedio + " Usted reprobo");
             }
 
             if (promedio >= 70 && promedio < 80)
             {
-                Console.WriteLine("Su promedio es: " + promedio + "Usted aprobo");
+                Console.WriteLine("Su promedio es: " + promedio + " Usted aprobo");
             }
 
             if (promedio >= 80 && promedio < 90)
             {
-                Console.WriteLine("Su promedio es: " + promedio + ".Su calificacion es buena");
+                Console.WriteLine("Su promedio es: " + promedio + " Su calificacion es buena");
             }
 
             if (promedio >= 90 && promedio <= 100)
             {
-                Console.WriteLine("Su promedio es: " + promedio + ".Su calificacion es Sobresaliente");
+                Console.WriteLine("Su promedio es: " + promedio + " Su calificacion es Sobresaliente");
             } else
             {
                 Console.WriteLine("Error, no puede sacar mas de 100");
