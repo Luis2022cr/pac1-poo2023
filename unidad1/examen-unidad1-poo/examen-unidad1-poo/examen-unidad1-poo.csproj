@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E7E37BEB-97CB-40C1-B11F-BB7C54A9DCBA}</ProjectGuid>
+    <ProjectGuid>{4317A213-4744-4910-91A8-895D7D21417E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>basico</RootNamespace>
-    <AssemblyName>basico</AssemblyName>
+    <RootNamespace>examen_unidad1_poo</RootNamespace>
+    <AssemblyName>examen-unidad1-poo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,27 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="arreglos\Arreglo02.cs" />
-    <Compile Include="arreglos\Arreglo01.cs" />
-    <Compile Include="arreglos\Arreglos03.cs" />
-    <Compile Include="arreglos\practica.cs" />
-    <Compile Include="arreglos\practica01.cs" />
-    <Compile Include="estructuras control\CondicionIf.cs" />
-    <Compile Include="estructuras control\ListarNumeros01.cs" />
-    <Compile Include="estructuras control\ListarNumeros02.cs" />
-    <Compile Include="estructuras control\ListarNumeros03.cs" />
-    <Compile Include="estructuras control\ListarNumeros04.cs" />
-    <Compile Include="estructuras control\ListarNumeros05.cs" />
-    <Compile Include="estructuras control\Promedio.cs" />
-    <Compile Include="estructuras control\Vocales.cs" />
+    <Compile Include="Ejercicios\Ejercicio01.cs" />
+    <Compile Include="Ejercicios\Ejercicio02.cs" />
+    <Compile Include="Ejercicios\Ejercicio03.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tipo datos\Tipos01.cs" />
-    <Compile Include="tipo datos\Tipos02.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
