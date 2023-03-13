@@ -1,29 +1,69 @@
-﻿@model Persona
+﻿@model HomeIndexViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 
-    string ConvertirEnMayusculas(string valor)
-    {
+    //string ConvertirEnMayusculas(string valor)
+    //{
+    //    return valor.ToUpper();
+    //}
 
-        return valor.ToUpper();
-    }
+    //DateTime hoy = DateTime.Now;
 
-    DateTime hoy = DateTime.Now;
-
-    var nombres = new List<string>() {"Luis", "Jose", "Juan"}
+    //var nombres = new List<string>() {"Luis", "Jose", "Juan"};
 }
 
-<div class="text-center">
-    <h1 class="display-4">Soy @ConvertirEnMayusculas(Model.Nombre) (@Model.Edad)</h1>    
-    
-    <h4>@hoy.ToString("dd/MM/yyyy hh:mm:ss")</h4>
-    
-    <h2>Soy un estudiante de Ingeneria en Sistemas</h2>
-    
-    @if (Model.Edad >= 21)
+
+@*Bloque de presentacion*@
+
+@Html.Partial("_Presentacion")
+
+@*Bloque experiencias*@
+
+@Html.Partial("_Experiencia")
+
+@*Listado de proyectos*@
+
+<partial name="_Proyectos" model="Model.Proyectos" />
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Ejemplo 1</h2>
+<div> 
+    Guid Transitorio: <b style="color: red">@Model.EjemploGuid_1.Transitorio</b>
+</div>
+<div> 
+    Guid Delimitado: <b style="color: green">@Model.EjemploGuid_1.DeLimitado</b>
+</div>
+<div> 
+    Guid Unico: <b style="color: blue">@Model.EjemploGuid_1.Unico</b>
+</div>
+
+<h2>Ejemplo 2</h2>
+<div> 
+    Guid Transitorio: <b style="color: red">@Model.EjemploGuid_2.Transitorio</b>
+</div>
+<div> 
+    Guid Delimitado: <b style="color: green">@Model.EjemploGuid_2.DeLimitado</b>
+</div>
+<div> 
+    Guid Unico: <b style="color: blue">@Model.EjemploGuid_2.Unico</b>
+</div>*@
+
+
+
+
+@* @if (Model.Edad >= 21)
     {
-        <h5>Eres mayor de edads</h5>    
+        <h5>Eres mayor de edads</h5>
     }
     else
     {
@@ -35,7 +75,4 @@
         {
              <li>@nombre</li>
         }
-    </ul>
-
-    <img class="profile-picture" src="~/images/foto01.jpg" alt="Imagen de Perfil" />
-</div>
+    </ul>*@
