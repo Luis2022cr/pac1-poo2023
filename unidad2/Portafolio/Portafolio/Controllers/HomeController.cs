@@ -23,14 +23,6 @@ namespace Portafolio.Controllers
 
         public IActionResult Index()
         {
-            /*
-             *LogTrace
-             *LogDebug
-             *LogInformation
-             *LogWarning
-             *LogError
-             *LogCritical
-             */
 
 
             var proyectos = repositorioProyectos.ObtenerProyectos().Take(3).ToList();
@@ -49,6 +41,24 @@ namespace Portafolio.Controllers
             return View(proyectos);
         }
 
+        public IActionResult Contacto()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult Contacto(ContactoViewModel contactoViewModel)
+        {
+            //_logger.LogCritical(contactoViewModel.Nombre);
+            return RedirectToAction("Gracias");
+        }
+
+        public IActionResult Gracias()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -56,6 +66,15 @@ namespace Portafolio.Controllers
         }
     }
 }
+
+            /*
+             *LogTrace
+             *LogDebug
+             *LogInformation
+             *LogWarning
+             *LogError
+             *LogCritical
+             */
 
             //_logger.LogTrace("Este es un mensaje de Trace");
             //_logger.LogDebug("Este es un mensaje de Debug");
