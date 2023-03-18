@@ -1,0 +1,33 @@
+﻿@model AlumnoViewModel
+
+<h1>Lista de Asistencia</h1>
+
+<div class="row justify-content-center justify-content-lg-start mt-3 gap-3">
+	<div class="">
+		<h4>Alumno: @ViewBag.Nombre</h4>
+	</div>
+	<div class="">
+		<h4>Apellido: @ViewBag.Apellido</h4>
+	</div>
+	<div class="">
+		<h4>Numero de Cuenta: @ViewBag.NumeroDeCuenta</h4>
+	</div>
+	<div class="">
+		<h4>Presente : @ViewBag.Presente</h4>
+	</div>
+</div>
+
+
+
+
+@*@model AlumnoViewModel
+
+@{
+	ViewData["Title"] = "Lista";
+}
+
+<div class="container">
+	<h2>Lista de Alumnos</h2>
+</div>
+
+<partial name="_ListaAlumnos" model="@Model.Alumnos" />*@
