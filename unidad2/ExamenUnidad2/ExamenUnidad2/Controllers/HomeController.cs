@@ -9,47 +9,51 @@ namespace ExamenUnidad2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IRepositorioAlumnos repositorioAlumnos;
+		private readonly IRepositorioAlumnos _repositorioAlumnos;
 
+		public HomeController(ILogger<HomeController> logger, IRepositorioAlumnos repositorioAlumnos)
+		{
+			_logger = logger;
+			this._repositorioAlumnos = repositorioAlumnos;
+		}
 
-        public HomeController(ILogger<HomeController> logger, IRepositorioAlumnos repositorioAlumnos)
-        {
-            _logger = logger;
-            this.repositorioAlumnos = repositorioAlumnos;
-        }
+		public IActionResult Index()
+		{
+			return View();
+		}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+		public IActionResult Listado()
+		{
+			var alumnos = _repositorioAlumnos.ObtenerAlumnos();
 
-        public IActionResult Listado()
-        {
-            //var alumnos = repositorioAlumnos.ObtenerAlumnos();
+			var alumnosViewModel = new AlumnoViewModel
+			{
+				Alumnos = alumnos.ToList(),
+			};
 
-            //var modelo = new AlumnoViewModel
-            //{
-            //    Alumnos = alumnos.ToList()
-            //};
-            //return View(modelo);
-            return View();
+			return View(alumnosViewModel);
+		}
 
-        }
-
+		public IActionResult Crear()
+		{
+			return View("Index");
+		}
 
 		[HttpPost]
-		public IActionResult Listado(Alumno datos)
-        {
-            ViewBag.Nombre = datos.Nombre;
-            ViewBag.Apellido = datos.Apellido;
-            ViewBag.NumeroDeCuenta = datos.NumeroDeCuenta;
-            ViewBag.Presente = datos.Presente;
+		public IActionResult Crear(Models.Alumno alumno)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View("Index", alumno);
+			}
 
-			return View();
-        }
+			_repositorioAlumnos.AgregarAlumno(alumno);
+
+			return RedirectToAction("Listado");
+		}
 
 
-        public IActionResult Privacy()
+		public IActionResult Privacy()
         {
             return View();
         }

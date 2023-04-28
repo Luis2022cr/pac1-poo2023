@@ -1,0 +1,30 @@
+﻿.custom-card {
+    border-radius: 40px;
+    background: #ecf0f3;
+    box-shadow: 10px 10px 14px #909294, -10px -10px 14px #ffffff;
+}
+
+.custom-input {
+    height: 40px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+    margin: 5px 2.5px;
+    padding-left: 2.5rem;
+    border-radius: 30px;
+    background: #ecf0f3;
+    box-shadow: inset 10px 10px 10px #b1b4b6, inset -10px -10px 10px #ffffff;
+    position: relative;
+}
+
+.custom-lista {
+    border: 1px solid;
+    width: 278px;
+    background: gray;
+}
+
+.custom-contenido {
+    border: 1px solid;
+    width: 278px;
+}

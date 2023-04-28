@@ -12,5 +12,6 @@ namespace ExamenUnidad2.Models
         public string NumeroDeCuenta { get; set; }
 
         public bool Presente { get; set; }
-    }
+		public bool Ausente { get; set; }
+	}
 }

@@ -2,6 +2,6 @@
 {
     public class AlumnoViewModel
     {
-        public IEnumerable<Alumno> Alumnos { get; set; }
+        public IEnumerable<Alumno> Alumnos;
     }
 }

@@ -6,7 +6,7 @@ namespace ExamenUnidad2.Interfaces
     {
 		public List<Models.Alumno> ObtenerAlumnos();
 
-		public List<Models.Alumno> Alumnos { get; set; }
+		public List<Models.Alumno> Alumnos { get; }
 
 		public void AgregarAlumno(Models.Alumno alumno);
 	}

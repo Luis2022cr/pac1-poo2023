@@ -1,0 +1,60 @@
+﻿@model ObtenerEmpleadosViewModel
+
+@{
+	ViewData["Title"] = "Lista de Empleados";
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-action="Crear" class="btn btn-primary">Crear Nuevo</a>
+
+<div class="row justify-content-center justify-content-lg-start mt-3 gap-3">
+	@foreach (var empleado in Model.Empleados)
+	{
+		<div class="card" >
+			<div class="face front custom-card ">
+				<div>
+					<img src="~/imagenes/banner.png" alt="banner" class="banner" />
+					<img class="icono mb-3 mt-3" src="~/imagenes/IconoPerfil.gif" alt="Icono de usuario" />
+					<h6 class="text-center mb-0" style="position: absolute; top: 75px; left: 145px;">Nombre:</h6>
+					<h4 class="card-title text-center mb-0 mt-0" style="position: absolute; top: 90px; left: 105px;">@empleado.Nombre</h4>
+					<h6 class="text-center">Fecha de Nacimiento:</h6>
+					<h5 class="card-subtitle mb-1 text-center">@empleado.FechaNacimiento</h5>
+					<h6 class="text-center">Genero:</h6>
+					<h5 class="card-subtitle mb-1 text-center">@empleado.Genero</h5>
+					<h6 class="text-center">Email:</h6>
+					<h5 class="card-subtitle mb-1 text-center">@empleado.Email</h5>
+					<h6 class="text-center">Telefono:</h6>
+					<h5 class="card-subtitle text-center">@empleado.Telefono</h5>
+				</div>
+			</div>
+
+			<div class="face back">
+				<div>
+
+					<h5 class="card-title text-center mt-1">@empleado.Nombre</h5>
+					<h6 class="card-subtitle mb-2 text-center">@empleado.FechaNacimiento</h6>
+					<h6 class="card-subtitle mb-2 text-center">@empleado.Genero</h6>
+					<h6 class="card-subtitle mb-2 text-center">@empleado.Email</h6>
+					<h6 class="card-subtitle text-center mb-2">@empleado.Telefono</h6>
+					<h6 class="card-subtitle text-center mb-2">@empleado.FechaIngreso</h6>
+					<h6 class="card-subtitle text-center mb-2">@empleado.Salario</h6>
+					<h6 class="card-subtitle text-center mb-2">@empleado.Estado</h6>
+					<h6 class="card-subtitle text-center mb-2">@empleado.Descripcion</h6>
+				</div>
+
+				<div>
+					<div class="row justify-content-center mb-3">
+						<input type="hidden" asp-for="@empleado.Id" />
+						<div class="p-3">
+							<a asp-action="Editar" asp-route-id="@empleado.Id" class="btn btn-primary custom-button">Editar</a>
+						</div>
+						<div style="margin-left: 5px">
+							<a asp-action="Borrar" asp-route-id="@empleado.Id" class="btn btn-danger custom-button">Borrar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	}
+</div>

@@ -1,0 +1,12 @@
+﻿#reordenable tr {
+    cursor: move
+}
+
+
+.activo {
+    color: blue;
+}
+
+.pasivo {
+    color: red;
+}

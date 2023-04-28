@@ -1,0 +1,35 @@
+﻿@model List<Datos>
+
+@{
+    ViewData["Title"] = "Agenda";
+}
+
+<h2 class="text-center">Contactos</h2>
+
+<div class="row text-center justify-content-lg-center mt-3">
+    <div class="col col-3 custom-lista">
+        <h4>Nombre</h4>
+    </div>
+    <div class="col col-3 custom-lista">
+        <h4>Teléfono</h4>
+    </div>
+    <div class="col col-3 custom-lista">
+        <h4>Tipo de teléfono</h4>
+    </div>
+</div>
+@foreach (var contacto in Model)
+{
+    <div class="row text-center justify-content-lg-center mt-3">
+        <div class="col col-3 custom-contenido">
+            <h4>@contacto.Nombre</h4>
+        </div>
+        <div class="col col-3 custom-contenido">
+            <h4>@contacto.Telefono</h4>
+        </div>
+        <div class="col col-3 custom-contenido">
+            <h4>@contacto.TipoTelefono</h4>
+        </div>
+    </div>
+}
+
+
