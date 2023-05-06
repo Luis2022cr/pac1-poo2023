@@ -11,6 +11,7 @@ namespace GestionRecursosHumanos.Models
 		public string Nombre { get; set; }
 
 		public int UsuarioId { get; set; }
+		[Display(Name = "Nombre del Departamento")]
 		public int DepartamentoId { get; set; }
 		public string Departamento { get; set; }
 

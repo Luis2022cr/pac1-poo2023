@@ -1,14 +1,13 @@
-﻿@model Departamento
+﻿@model Empleado
 
 @{
-	ViewData["Title"] = "Borrar departamento";
+	ViewData["Title"] = "Borrar empleado";
 }
 
+
 <form asp-action="BorrarConfirm" class="Custom-form">
-	<div class="text-center">
-		<h2>¿Esta seguro de eliminar <strong>"@Model.Nombre"</strong>?</h2>
-		<h5>Tenga en cuenta que esta accion no se puede deshacer</h5>
-	</div>
+	<h3 class="text-center">¿Seguro de Borrar al empleado <strong>"@Model.Nombre"</strong>?</h3>
+	<h5>Esta accion no se puede deshacer</h5>
 
 	<input asp-for="Id" type="hidden" />
 	<button type="submit" class="btnB"><i class="bi bi-trash3"></i> Borrar</button>

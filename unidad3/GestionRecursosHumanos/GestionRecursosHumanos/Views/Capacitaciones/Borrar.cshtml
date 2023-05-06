@@ -1,7 +1,7 @@
-﻿@model Departamento
+﻿@model Capacitacion
 
 @{
-	ViewData["Title"] = "Borrar departamento";
+	ViewData["Title"] = "Eliminar";
 }
 
 <form asp-action="BorrarConfirm" class="Custom-form">
@@ -11,6 +11,6 @@
 	</div>
 
 	<input asp-for="Id" type="hidden" />
-	<button type="submit" class="btnB"><i class="bi bi-trash3"></i> Borrar</button>
+	<button type="submit" class="btnB"><i class="bi bi-trash3"></i>Borrar</button>
 	<a asp-action="Index" class="btnC">Cancelar</a>
 </form>

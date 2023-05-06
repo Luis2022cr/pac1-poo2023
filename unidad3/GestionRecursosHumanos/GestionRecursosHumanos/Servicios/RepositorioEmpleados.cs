@@ -18,9 +18,9 @@ namespace GestionRecursosHumanos.Servicios
 			using var connection = new SqlConnection(connectionString);
 			var id = await connection.QuerySingleAsync<int>
 				($@"INSERT INTO Empleados
-                (Nombre, FechaNacimiento, CargoId, Genero, Email, Telefono, FechaIngreso, Salario, Estado, Descripcion)
+                (Nombre, FechaNacimiento, CargoId, Genero, Email, Telefono, FechaIngreso, Salario, Estado, Descripcion, UsuarioId, DepartamentoId)
                 VALUES
-                (@Nombre, @FechaNacimiento, @CargoId, @Genero, @Email, @Telefono, @FechaIngreso, @Salario, @Estado, @Descripcion);
+                (@Nombre, @FechaNacimiento, @CargoId, @Genero, @Email, @Telefono, @FechaIngreso, @Salario, @Estado, @Descripcion, @UsuarioId, @DepartamentoId);
                 SELECT SCOPE_IDENTITY()", empleado);
 		}
 
@@ -39,10 +39,13 @@ namespace GestionRecursosHumanos.Servicios
 					em.Salario,
 					em.Estado,
 					em.Descripcion,
-					ca.Nombre AS TipoCuenta
+					ca.Nombre AS Cargo,
+					de.Nombre AS Departamento
 				FROM Empleados em
-				INNER JOIN Cargos ca
-				ON ca.Id = em.CargoId
+				INNER JOIN Cargos ca 
+					ON ca.Id = em.CargoId
+				INNER JOIN Departamentos de
+					ON de.Id = em.DepartamentoId
 				WHERE ca.UsuarioId = @UsuarioId", new {usuarioId});
 		}
 
@@ -59,6 +62,7 @@ namespace GestionRecursosHumanos.Servicios
 					em.Email,
 					em.Telefono,
 					em.Estado,
+					em.Salario,
 					em.Descripcion
 				FROM Empleados AS em
 				INNER JOIN Cargos AS ca
@@ -71,18 +75,25 @@ namespace GestionRecursosHumanos.Servicios
 			using var connection = new SqlConnection(connectionString);
 
 			await connection.ExecuteAsync
-				(@"UPDATE Cuentas
+				(@"UPDATE Empleados
 				SET Nombre = @Nombre,
 					FechaNacimiento = @FechaNacimiento,
+					CargoId = @CargoId,
+					DepartamentoId = @DepartamentoId,
 					Genero = @Genero,
 					Email = @Email,
 					Telefono = @Telefono,
 					Salario = @Salario,
 					Estado = @Estado,
 					FechaIngreso = @FechaIngreso,
-					TipoCuentaId = @TipoCuentaId
 					Descripcion = @Descripcion
 				WHERE Id = @Id", modelo);
+		}
+
+		public async Task Borrar(int id)
+		{
+			using var connection = new SqlConnection(connectionString);
+			await connection.ExecuteAsync("DELETE Empleados WHERE Id = @Id", new { id });
 		}
 	}
 }

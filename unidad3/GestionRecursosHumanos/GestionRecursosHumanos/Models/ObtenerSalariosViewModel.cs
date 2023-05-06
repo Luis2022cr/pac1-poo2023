@@ -12,6 +12,6 @@ namespace GestionRecursosHumanos.Models
 
 	public class ObtenerSalariosViewModel
 	{
-		public IEnumerable<SalarioDTO>? Salarios { get; set; }
+		public IEnumerable<SalarioDTO> Salarios { get; set; }
 	}
 }

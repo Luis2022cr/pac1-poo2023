@@ -5,9 +5,9 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
+<h5 class="text-center">Puede crear un cargo que haya en la empresa, con su respectivo nombre y Codigo de referencia</h5>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<div class="">
 
 <form asp-controller="Cargos" asp-action="Crear" class="Custom-form">
 
@@ -29,11 +29,10 @@
 		<span asp-validation-for="Descripcion" class="text-danger"></span>
 	</div>
 
-	<button class="btnG" type="submit">Guardar</button>
+	<button class="btnG" type="submit"><i class="bi bi-cloud-arrow-up-fill"></i> Guardar</button>
 
 	<a asp-action="Index" class="btnC">Cancelar</a>
 </form>
-</div>
 
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />

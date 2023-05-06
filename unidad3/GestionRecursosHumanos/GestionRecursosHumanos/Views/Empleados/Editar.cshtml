@@ -1,15 +1,15 @@
 ﻿@model EmpleadoCreacionViewModel
 
 @{
-	ViewData["Title"] = "Crea un Nuevo Empleado";
+	ViewData["Title"] = "Edite un Empleado";
 }
 
 <div class="text-center">
-	<h1>@ViewData["Title"]</h1>
-	<h5>Aqui puede crear un empleado que haya ingresado en la empresa recientemente</h5>
+	<h1 >@ViewData["Title"]</h1>
+	<h5 >Aqui puede editar los datos de un empleado de la empresa</h5>
 </div>
 
-<form asp-action="Crear"class="Custom-form">
+<form asp-action="Editar" class="Custom-form">
 	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 	<div class="mb-3">
@@ -20,7 +20,7 @@
 
 	<div class="mb-3">
 		<label class="form-label" asp-for="FechaNacimiento"></label>
-		<input asp-for="FechaNacimiento" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+		<input asp-for="FechaNacimiento" class="form-control" type="date"/>
 		<span asp-validation-for="FechaNacimiento" class="text-danger"></span>
 	</div>
 

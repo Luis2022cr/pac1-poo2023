@@ -2,15 +2,17 @@
     cursor: move
 }
 
+/*CARTAS defs INDEX EMPLEADOS*/
+
 .custom-card {
-    width: 369px;
+    width: 350px;
     border-radius: 16px;
     background: #33FFF6;
-    box-shadow: 10px 10px 20px #b1b1b1, -10px -10px 20px #ffffff;
+    box-shadow: 15px 15px 30px #b1b1b1, -15px -15px 30px #ffffff;
 }
 
 .custom-button {
-    width: 340px;
+    width: 200px;
     margin-left: 5px;
     border: none;
     border-radius: 16px;
@@ -19,10 +21,9 @@
 
 .icono {
     display: block;
-    z-index: 3;
     margin-left: 9.1rem;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     margin: auto;
     text-align: center;
@@ -37,43 +38,46 @@
 
 .card {
     position: relative;
-    width: 369px;
+    width: 359px;
+    height: 450px;
     border: none;
+    background: #d8d8d8;
 }
 
     .card .face {
-        /*position: absolute;*/
-        width: 100%;
-        height: 100%;
+        width: 150%;
+        height: 105%;
         backface-visibility: hidden;
         transition: .5s;
     }
 
-    .card .front {
-        width: 356px;
-        position: absolute;
-        background: #B0F7FA;
-        box-shadow: 10px 10px 20px #b1b1b1, -10px -10px 20px #ffffff;
-        transform: perspective(600px) rotateY(0deg);
-    }
+.card2 {
+    background: #a4fcfa;
+}
 
-    .card .back {
-        width: 356px;
-        transform: perspective(600px) rotateY(180deg);
-        border-radius: 16px;
-        background: #e0e0e0;
-        /*display: flex;
-        flex-direction: column;*/
-        box-shadow: 10px 10px 20px #b1b1b1, -10px -10px 20px #ffffff;
-    }
+.card .front {
+    width: 356px;
+    position: absolute;
+    background: #B0F7FA;
+    box-shadow: 10px 10px 20px #b1b1b1, -10px -10px 20px #ffffff;
+    transform: perspective(600px) rotateY(0deg);
+}
 
-    .card:hover .front {
-        transform: perspective(600px) rotateY(180deg);
-    }
+.card .back {
+    width: 356px;
+    transform: perspective(600px) rotateY(180deg);
+    border-radius: 16px;
+    background: #e0e0e0;
+    box-shadow: 10px 10px 20px #b1b1b1, -10px -10px 20px #ffffff;
+}
 
-    .card:hover .back {
-        transform: perspective(600px) rotateY(360deg);
-    }
+.card:hover .front {
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.card:hover .back {
+    transform: perspective(600px) rotateY(360deg);
+}
 
 .banner {
     position: relative;
@@ -83,9 +87,6 @@
     border-top-right-radius: 16px;
     width: 100%;
 }
-
-
-/*NUEVOOOOOOOOOOOOOOOOOO*/
 
 /*BTN GUARDAR*/
 
@@ -116,16 +117,16 @@
         border: solid 2px #0066cc;
     }
 
-/*CREAR NUEVO*/
+/*BTN CREAR NUEVO*/
 
 .btn1 {
     box-shadow: inset 0px 0px 0px 0px #0044ff;
     background-color: transparent;
     border-radius: 50px;
-    border: 1px solid #0040ff;
+    border: 1px solid black;
     display: inline-block;
     cursor: pointer;
-    color: #6d00fc;
+    color: black;
     font-family: Arial;
     font-size: 18px;
     padding: 1px 25px;
@@ -149,7 +150,7 @@
     font-family: Roboto, sans-serif;
     font-weight: 100;
     font-size: 14px;
-    color: #ffffff;
+    color: black;
     background-color: darkgray;
     padding: 10px 30px;
     border: solid #000000 2px;
@@ -163,14 +164,14 @@
     cursor: pointer;
 }
 
-.btnC:hover {
-    transition: 783ms;
-    padding: 10px 52px;
-    transform: translateY(-0px);
-    background-color: #fff;
-    color: dimgray;
-    border: solid 2px gray;
-}
+    .btnC:hover {
+        transition: 783ms;
+        padding: 10px 52px;
+        transform: translateY(-0px);
+        background-color: #fff;
+        color: dimgray;
+        border: solid 2px gray;
+    }
 
 /*BTN BORRAR*/
 
@@ -242,30 +243,14 @@
     border: 3px solid black;
 }
 
-.table thead th:nth-child(1) {
-    width: 33%;
-}
+    .table thead th {
+        color: white;
+        padding: 15px;
+    }
 
-.table thead th:nth-child(2) {
-    width: 33%;
-}
-
-.table thead th:nth-child(3) {
-    width: 50%;
-}
-
-.table thead th:nth-child(4) {
-    width: 33%;
-}
-
-.table thead th{
-    color: white;
-    padding: 15px;
-}
-
-.table tbody td {
-    padding: 10px;
-}
+    .table tbody td {
+        padding: 10px;
+    }
 
 tbody tr:nth-child(odd) {
     background-color: #c8dadc;
@@ -275,3 +260,156 @@ tbody tr:nth-child(even) {
     background-color: #dae6e8;
 }
 
+/*IMAGANES Index Home*/
+
+.imagenText {
+    font-weight: bold;
+    background: #f9f9f1;
+}
+
+    .imagenText label {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+    }
+
+
+.imagen {
+    filter: invert(50%);
+}
+
+    .imagen:hover {
+        filter: opacity(.3);
+        -webkit-transform: rotateY(180deg);
+        -webkit-transform-style: preserve-3d;
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+
+
+/*ANIMACION del body (BURBUJAS DEL FONDO)*/
+
+
+.burbujas div {
+    background: black;
+    position: absolute;
+    bottom: 0;
+    animation: animarburbujas 4s linear infinite;
+    z-index: -1;
+}
+
+    .burbujas div:nth-child(1) {
+        width: 50px;
+        height: 45px;
+        left: 40px;
+        animation-duration: 4s;
+    }
+
+    .burbujas div:nth-child(2) {
+        width: 60px;
+        height: 55px;
+        left: 25%;
+        animation-duration: 8s;
+    }
+
+    .burbujas div:nth-child(3) {
+        width: 30px;
+        height: 27px;
+        left: 40%;
+        animation-duration: 5s;
+    }
+
+    .burbujas div:nth-child(4) {
+        width: 65px;
+        height: 60px;
+        left: 50%;
+        animation-duration: 10s;
+    }
+
+    .burbujas div:nth-child(5) {
+        width: 55px;
+        height: 50px;
+        left: 65%;
+        animation-duration: 6.5s;
+    }
+
+    .burbujas div:nth-child(6) {
+        width: 50px;
+        height: 48px;
+        left: 85%;
+        animation-duration: 9s;
+    }
+
+    .burbujas div:nth-child(7) {
+        width: 35px;
+        height: 32px;
+        left: 90%;
+        animation-duration: 6s;
+    }
+
+@keyframes animarburbujas {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    3% {
+        width: 30px;
+        height: 27px;
+    }
+
+    50% {
+        margin-left: 20px;
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: rotate(90deg);
+        bottom: 100vh;
+        background: lightgray;
+    }
+}
+
+/*ACORDEON*/
+
+.accordion {
+    width: 800px;
+    margin: 10px auto;
+    color: black;
+    background-color: #46a2e8;
+    padding: 5px 5px;
+}
+
+.accordion-item {
+    position: relative;
+    margin: 10px 10px;
+}
+
+.accordion-title {
+    position: relative;
+    padding: 10px 0;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    background: lightblue;
+}
+
+    .accordion-title:hover {
+        background-color: white;
+    }
+
+    .accordion-title::after {
+        content: '\002B';
+        float: right;
+    }
+
+.accordion-item.active .accordion-title::after {
+    content: '\2212';
+}
+
+.accordion-content {
+    padding: 10px;
+}
+
+.accordion-item:not(.active) .accordion-content {
+    display: none;
+}

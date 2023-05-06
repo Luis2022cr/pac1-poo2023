@@ -1,0 +1,65 @@
+﻿@model CapacitacionCreacionViewModel
+
+@{
+	ViewData["Title"] = "Editar Capacitacion";
+}
+
+<div class="text-center">
+	<h1>@ViewData["Title"]</h1>
+	<h5>Aqui se editan las capacitaciones que cada empleado necesitara.</h5>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-controller="Capacitaciones" asp-action="Editar" class="Custom-form">
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Nombre"></label>
+		<input asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="DepartamentoId" class="form-label"></label>
+		<select asp-for="DepartamentoId" asp-items="Model.Departamentos" class="form-select"></select>
+		<span asp-validation-for="DepartamentoId" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="EmpleadoId" class="form-label"></label>
+		<select asp-for="EmpleadoId" asp-items="Model.Empleados" class="form-select"></select>
+		<span asp-validation-for="EmpleadoId" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Fecha"></label>
+		<input asp-for="Fecha" class="form-control" type="date"  />
+		<span asp-validation-for="Fecha" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Duracion"></label>
+		<input asp-for="Duracion" class="form-control" />
+		<span asp-validation-for="Duracion" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Costo"></label>
+		<input asp-for="Costo" class="form-control" />
+		<span asp-validation-for="Costo" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Descripcion"></label>
+		<textarea asp-for="Descripcion" class="form-control"></textarea>
+		<span asp-validation-for="Descripcion" class="text-danger"></span>
+	</div>
+
+	<button class="btnG" type="submit"><i class="bi bi-cloud-arrow-up-fill"></i> Guardar</button>
+
+	<a asp-action="Index" class="btnC">Cancelar</a>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

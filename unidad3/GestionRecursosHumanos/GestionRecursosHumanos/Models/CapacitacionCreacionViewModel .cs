@@ -2,9 +2,10 @@
 
 namespace GestionRecursosHumanos.Models
 {
-	public class EmpleadoCreacionViewModel : Empleado
+	public class CapacitacionCreacionViewModel : Capacitacion
 	{
 		public IEnumerable<SelectListItem> Departamentos { get; set; }
-		public IEnumerable<SelectListItem> Cargos { get; set; }
+
+		public IEnumerable<SelectListItem> Empleados { get; set; }
 	}
 }

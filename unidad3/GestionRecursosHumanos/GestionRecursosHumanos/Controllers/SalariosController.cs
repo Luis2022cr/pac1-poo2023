@@ -33,13 +33,6 @@ namespace GestionRecursosHumanos.Controllers
 					RangoMinimo = salario.RangoMinimo,
 				})
 			};
-			//var modelo = salariosConDepartamento
-			//	.GroupBy(x => x.Departamento)
-			//	.Select(grupo => new IndexSalariosViewModel 
-			//	{
-			//		Departamento = grupo.Key,
-			//		Salarios = grupo.AsEnumerable()
-			//	}).ToList();
 
 			return View(modelo);
 		}
@@ -60,11 +53,11 @@ namespace GestionRecursosHumanos.Controllers
 		{
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 
-			//if (!ModelState.IsValid)
-			//{
-			//	modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
-			//	return View(modelo);
-			//}
+			if (!ModelState.IsValid)
+			{
+				modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
+				return View(modelo);
+			}
 
 			var departamento = await repositorioDepartamentos.ObtenerPorId(modelo.DepartamentoId, usuarioId);
 
@@ -103,18 +96,6 @@ namespace GestionRecursosHumanos.Controllers
 			modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
 
 			return View(modelo);
-
-			//var editarSalario = new EditarSalarioViewModel
-			//{
-			//	Id = salario.Id,
-			//	Nombre = salario.Nombre,
-			//	RangoMaximo = salario.RangoMaximo,
-			//	UsuarioId = usuarioId,
-			//	RangoMinimo = salario.RangoMinimo,
-			//};
-
-
-			//return View(editarSalario);
 		}
 
 		[HttpPost]
@@ -123,11 +104,11 @@ namespace GestionRecursosHumanos.Controllers
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var salario = await repositorioSalarios.ObtenerPorId(modelo.Id, usuarioId);
 
-			//if (!ModelState.IsValid)
-			//{
-			//	modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
-			//	return View(modelo);
-			//}
+			if (!ModelState.IsValid)
+			{
+				modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
+				return View(modelo);
+			}
 
 			if (salario is null)
 			{
@@ -151,25 +132,11 @@ namespace GestionRecursosHumanos.Controllers
 		{
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var salario = await repositorioSalarios.ObtenerPorId(id, usuarioId);
-			//var salarios = await repositorioSalarios.Obtener(usuarioId);
 
 			if (salario is null)
 			{
 				return RedirectToAction("NoEncontrado", "Home");
 			}
-
-			//return View(salario);
-
-			//var modelo = new ObtenerSalariosViewModel
-			//{
-			//	Salarios = salarios.Select(salario => new SalarioDTO
-			//	{
-			//		Id = salario.Id,
-			//		DepartamentoNombre = salario.Departamento,
-			//		RangoMaximo = salario.RangoMaximo,
-			//		RangoMinimo = salario.RangoMinimo,
-			//	})
-			//};
 
 			var modelo = new SalarioDTO
 			{
@@ -197,19 +164,6 @@ namespace GestionRecursosHumanos.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-		//public async Task<IActionResult> VerificarExisteSalario(string nombre)
-		//{
-		//	var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-		//	var yaExisteSalario = await repositorioSalarios.Existe(nombre, usuarioId);
-
-		//	if (yaExisteSalario)
-		//	{
-		//		return Json($"EL nombre {nombre} ya existe");
-		//	}
-
-		//	return Json(true);
-		//}
 
 		private async Task<IEnumerable<SelectListItem>> ObtenerDepartamentos(int usuarioId)
 		{

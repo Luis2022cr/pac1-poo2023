@@ -1,0 +1,36 @@
+﻿@model ObtenerCapacitacionesViewModel
+
+@{
+	ViewData["Title"] = "Capacitaciones";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h5>Aqui se mirara las capacitaciones que se necesitan para cada departamento y empleado. Ejemplos: Ventas, Finanzas, Desarrodador, etc.</h5>
+
+<a asp-action="Crear" class="btn1"><i class="bi bi-cloud-plus"></i> Crear Nuevo</a>
+<p></p>
+
+<div class="accordion">
+    @foreach (var capacitacion in Model.Capacitaciones)
+    {
+        <div class="accordion-item">
+            <div class="accordion-title"><strong>@capacitacion.Nombre</strong></div>
+            <div class="accordion-content">
+                <p><strong>Departamento: </strong>@capacitacion.NombreDepartamento</p>
+                <p><strong>Empleado: </strong>@capacitacion.NombreEmpleado</p>
+                <p><strong>Fecha: </strong>@capacitacion.Fecha.ToString("dd/MM/yyyy")</p>
+                <p><strong>Duración: </strong>@capacitacion.Duracion horas</p>
+                <p><strong>Costo: </strong>@capacitacion.Costo $</p>
+                <p><strong>Descripción: </strong>@capacitacion.Descripcion</p>
+
+                <input type="hidden" asp-for="@capacitacion.Id" class="ids" />
+                <a class="btn btn-outline-primary" asp-action="Editar" asp-route-id="@capacitacion.Id"><i class="bi bi-pencil-square"></i> Editar</a>
+                <a asp-action="Borrar" asp-route-id="@capacitacion.Id" class="btn btn-outline-danger"><i class="bi bi-x-octagon"></i> Borrar</a>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/accordion.js"></script>
+}

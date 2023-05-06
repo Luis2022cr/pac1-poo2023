@@ -37,16 +37,7 @@ namespace GestionRecursosHumanos.Controllers
 				return View(cargo);
 			}
 
-			cargo.UsuarioId = servicioUsuarios.ObtenerUsuarioId();//porque no puede ser null
-			//cargo.Orden = 0;//porque no puede ser null
-
-			//var yaExisteCargo = await repositorioCargos.Existe(cargo.Nombre, cargo.UsuarioId);
-
-			//if (yaExisteCargo)
-			//{
-			//	ModelState.AddModelError(nameof(cargo.Nombre), $"El nombre {cargo.Nombre} ya existe");
-			//	return View(cargo);
-			//}
+			cargo.UsuarioId = servicioUsuarios.ObtenerUsuarioId();
 
 			await repositorioCargos.Crear(cargo);
 

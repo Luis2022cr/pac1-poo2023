@@ -10,18 +10,23 @@ namespace GestionRecursosHumanos.Controllers
 		private readonly IRepositorioEmpleados repositorioEmpleados;
 		private readonly IServicioUsuarios servicioUsuarios;
 		private readonly IRepositorioCargos repositorioCargos;
+		private readonly IRepositorioDepartamentos repositorioDepartamentos;
 
-		public EmpleadosController(IRepositorioEmpleados repositorioEmpleados, IServicioUsuarios servicioUsuarios, IRepositorioCargos repositorioCargos)
+		public EmpleadosController
+			(IRepositorioEmpleados repositorioEmpleados, 
+			IServicioUsuarios servicioUsuarios, 
+			IRepositorioCargos repositorioCargos,
+			IRepositorioDepartamentos repositorioDepartamentos)
 		{
 			this.repositorioEmpleados = repositorioEmpleados;
 			this.servicioUsuarios = servicioUsuarios;
 			this.repositorioCargos = repositorioCargos;
+			this.repositorioDepartamentos = repositorioDepartamentos;
 		}
 
 		public async Task<IActionResult> Index()
 		{
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-			var empleadosConCargo = await repositorioEmpleados.ObtenerEmpleados(usuarioId);
 			var empleados = await repositorioEmpleados.ObtenerEmpleados(usuarioId);
 
 			var modelo = new ObtenerEmpleadosViewModel
@@ -40,18 +45,8 @@ namespace GestionRecursosHumanos.Controllers
 					Salario = empleado.Salario,
 					Estado = empleado.Estado,
 					Descripcion = empleado.Descripcion,
-
 				})
 			};
-
-			//var modelo = empleadosConCargo
-			//	.GroupBy(x => x.Cargo)
-			//	.Select(grupo => new IndexEmpleadosViewModel
-			//	{
-			//		Cargo = grupo.Key,
-			//		Empleados = grupo.AsEnumerable()
-			//	}).ToList();
-
 			return View(modelo);
 		}
 
@@ -61,6 +56,7 @@ namespace GestionRecursosHumanos.Controllers
 			var modelo = new EmpleadoCreacionViewModel();
 
 			modelo.Cargos = await ObtenerCargos(usuarioId);
+			modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
 
 			return View(modelo);
 		}
@@ -69,15 +65,23 @@ namespace GestionRecursosHumanos.Controllers
 		public async Task<IActionResult> Crear(EmpleadoCreacionViewModel modelo)
 		{
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
+			modelo.UsuarioId = usuarioId;
 
-			//if (!ModelState.IsValid)
-			//{
-			//	modelo.Cargos = await ObtenerCargos(usuarioId);
-			//	return View(modelo);
-			//}
+			if (!ModelState.IsValid)
+			{
+				modelo.Cargos = await ObtenerCargos(usuarioId);
+				modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
+				return View(modelo);
+			}
 
 			var cargo = await repositorioCargos.ObtenerPorId(modelo.CargoId, usuarioId);
 			if (cargo is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			var departamento = await repositorioDepartamentos.ObtenerPorId(modelo.DepartamentoId, usuarioId);
+			if (departamento is null)
 			{
 				return RedirectToAction("NoEncontrado", "Home");
 			}
@@ -113,14 +117,86 @@ namespace GestionRecursosHumanos.Controllers
 			};
 
 			modelo.Cargos = await ObtenerCargos(usuarioId);
+			modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
 
 			return View(modelo);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Editar(EmpleadoCreacionViewModel modelo)
+		{
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
+			var empleado = await repositorioEmpleados.ObtenerPorId(modelo.Id, usuarioId);
+
+			if (!ModelState.IsValid)
+			{
+				modelo.Cargos = await ObtenerCargos(usuarioId);
+				modelo.Departamentos = await ObtenerDepartamentos(usuarioId);
+				return View(modelo);
+			}
+
+			if (empleado is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			var departamento = await repositorioDepartamentos.ObtenerPorId(modelo.DepartamentoId, usuarioId);
+			if (departamento is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			var cargo = await repositorioCargos.ObtenerPorId(modelo.CargoId, usuarioId);
+			if (cargo is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			await repositorioEmpleados.Actualizar(modelo);
+
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Borrar(int id)
+		{
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
+			var empleado = await repositorioEmpleados.ObtenerPorId(id, usuarioId);
+
+			if (empleado is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			return View(empleado);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> BorrarConfirm(int id)
+		{
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
+			var empleado = await repositorioEmpleados.ObtenerPorId(id, usuarioId);
+
+			if (empleado is null)
+			{
+				return RedirectToAction("NoEncontrado", "Home");
+			}
+
+			await repositorioEmpleados.Borrar(id);
+
+			return RedirectToAction("Index");
 		}
 
 		private async Task<IEnumerable<SelectListItem>> ObtenerCargos(int usuarioId)
 		{
 			var cargos = await repositorioCargos.Obtener(usuarioId);
 			return cargos.Select(x => new SelectListItem(x.Nombre, x.Id.ToString()));
+		}
+
+		private async Task<IEnumerable<SelectListItem>> ObtenerDepartamentos(int usuarioId)
+		{
+			var departamentos = await repositorioDepartamentos.Obtener(usuarioId);
+			return departamentos.Select(x => new SelectListItem(x.Nombre, x.Id.ToString()));
 		}
 	}
 }

@@ -22,15 +22,6 @@ namespace GestionRecursosHumanos.Controllers
 			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var departamentos = await repositorioDepartamentos.Obtener(usuarioId);
 
-			//var modelo = departamentos
-			//	.GroupBy(x => x.Salario)
-			//	.Select(grupo => new IndexDepartamendosViewModel 
-			//	{ 
-			//		Salario = grupo.Key,
-			//		Departamentos = grupo.AsEnumerable(),
-			//	}).ToList();
-
-			//return View(departamentos);
 			return View(departamentos);
 		}
 
@@ -38,44 +29,6 @@ namespace GestionRecursosHumanos.Controllers
 		public IActionResult Crear()
 		{
 			return View();
-			//var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-			//var modelo = new DepartamentoCreacionViewModel();
-
-			//modelo.Salario = await ObtenerSalarios(usuarioId);
-
-			//return View(modelo);
-			//
-			//var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-			//var departamentos = await repositorioDepartamentos.ObtenerPorId(id, usuarioId);
-
-			//var modelo = new DepartamentoCreacionViewModel
-			//{
-			//	Id = departamentos.Id,
-			//	Nombre = departamentos.Nombre,
-			//	Descripcion = departamentos.Descripcion,
-			//	SalarioId = departamentos.SalarioId,
-			//	Codigo= departamentos.Codigo,
-			//};
-			//modelo.Salario = await ObtenerDepartamentos(usuarioId);
-
-			//return View(modelo);
-
-			//var departamentoCrearViewModel = new DepartamentoCreacionViewModel
-			//{
-			//	Salario = new List<SelectListItem> { new SelectListItem { Text = "Test", Value = "1" } }
-			//};
-
-			//return View(departamentoCrearViewModel);
-
-			//var salarios = await repositorioSalarios.ObtenerPorId(id, usuarioId);
-			//var salarioItems = salarios.Select(s => new SelectListItem { Text = s.Nombre, Value = s.Id.ToString() }).ToList();
-
-			//var departamentoCrearViewModel = new DepartamentoCreacionViewModel
-			//{
-			//	Salario = salarioItems
-			//};
-
-			//return View(departamentoCrearViewModel);
 		}
 
 		[HttpPost]
@@ -166,11 +119,5 @@ namespace GestionRecursosHumanos.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-		//private async Task<IEnumerable<SelectListItem>> ObtenerSalarios(int usuarioId)
-		//{
-		//	var salarios = await repositorioSalarios.Obtener(usuarioId);
-		//	return salarios.Select(x => new SelectListItem(x.Nombre, x.Id.ToString()));
-		//}
 	}
 }
